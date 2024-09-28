@@ -1,7 +1,28 @@
+# Target Files for Java
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
 # Compiled class file
 *.class
 
-# Log file
+# Compiled output for Angular
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node for Angular
+/VotingAppWeb/node_modules
+/VotingAppWeb/npm-debug.log
+/VotingAppWeb/nyarn-error.log
+
+# VS Code files for Angular
+/VotingAppWeb/.vscode
+
+# Log files
 *.log
 
 # BlueJ files
@@ -22,3 +43,29 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+ode_modules/
