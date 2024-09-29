@@ -18,7 +18,8 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public String castVote(VoteDto voteDto) {
         Voter voter = voterRepository.findById(voteDto.voterId())
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Voter entity with id %s not found", voteDto.voterId())));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Voter entity with id %s not found",
+                        voteDto.voterId())));
 
         Long oldCandidateId = voter.getCandidateId();
         Long newCandidateId = voteDto.candidateId();
