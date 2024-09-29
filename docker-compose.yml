@@ -31,14 +31,14 @@ services:
 
   # Postgres DB
   db:
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     container_name: voting-app-db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: votingdb
+      - POSTGRES_USER=voter_admin
+      - POSTGRES_PASSWORD=voter_admin
+      - POSTGRES_DB=votingdb
     ports:
-      - "4432:4432"
+      - "5432:5432"
     networks:
       - voting-app-network
     volumes:
