@@ -8,10 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/voters")
@@ -21,6 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class VoterController {
 
     private final VoterService voterService;
+
+    @GetMapping
+    public ResponseEntity<List<VoterDto>> getAllVoters(){
+        log.info("Retrieving list of all candidates");
+        final List<VoterDto> result = voterService.getAllVoters();
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 
     @PostMapping
     public ResponseEntity<VoterDto> addVoter(final @Valid @RequestBody VoterDto voterDto) {

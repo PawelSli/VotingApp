@@ -18,6 +18,8 @@ public interface CandidateMapper {
     @Mapping(source = "voterList", target = "votes", qualifiedByName = "populateVotesNumbers")
     CandidateDto candidateToCandidateDto(Candidate candidate);
 
+    List<CandidateDto> candidateListToCandidateDtoList(List<Candidate> candidateList);
+
     @Named("populateVotesNumbers")
     default Integer populateVotesNumbers(final List<Voter> voterList) {
         return ObjectUtils.isEmpty(voterList) ? 0 : voterList.size();
