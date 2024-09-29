@@ -1,2 +1,1 @@
-ALTER TABLE candidates
-DROP COLUMN votes EXISTS old_column;
+ALTER TABLE candidates DROP COLUMN IF EXISTS votes;

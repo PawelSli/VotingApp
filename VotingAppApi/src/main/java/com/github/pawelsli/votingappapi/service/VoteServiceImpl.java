@@ -6,7 +6,6 @@ import com.github.pawelsli.votingappapi.repository.VoterRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
@@ -17,7 +16,6 @@ public class VoteServiceImpl implements VoteService {
     private final VoterRepository voterRepository;
 
     @Override
-    @Transactional
     public String castVote(VoteDto voteDto) {
         Voter voter = voterRepository.findById(voteDto.voterId())
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Voter entity with id %s not found", voteDto.voterId())));
