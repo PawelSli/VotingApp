@@ -16,9 +16,6 @@ public class Candidate {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "votes")
-    private Integer votes;
-
     // candidates.candidate_id -> voters.candidate_id
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<Voter> voterList;
@@ -40,14 +37,6 @@ public class Candidate {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getVotes() {
-        return votes;
-    }
-
-    public void setVotes(Integer votes) {
-        this.votes = votes;
     }
 
     public List<Voter> getVoterList() {

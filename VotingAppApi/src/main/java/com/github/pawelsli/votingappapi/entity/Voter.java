@@ -15,7 +15,7 @@ public class Voter {
     private String name;
 
     @Column(name = "candidate_id")
-    private Integer candidateId;
+    private Long candidateId;
 
     // candidates.candidate_id -> voters.candidate_id
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,11 +41,11 @@ public class Voter {
         this.name = name;
     }
 
-    public Integer getCandidateId() {
+    public Long getCandidateId() {
         return candidateId;
     }
 
-    public void setCandidateId(Integer candidateId) {
+    public void setCandidateId(Long candidateId) {
         this.candidateId = candidateId;
     }
 
