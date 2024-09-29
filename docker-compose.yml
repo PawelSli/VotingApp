@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Backend Service (Java Spring Boot API)
+  api:
+    image: voting-app-api
+    build:
+      context: ./VotingAppApi
+      dockerfile: Dockerfile
+    container_name: voting-app-api
+    ports:
+      - "8080:8080"
+    networks:
+      - voting-app-network
+    depends_on:
+      - db
+
+  # Frontend Service (Angular Web)
+  web:
+    image: voting-app-web
+    build:
+      context: ./VotingAppWeb
+      dockerfile: Dockerfile
+    container_name: voting-app-web
+    ports:
+      - "4200:80"
+    networks:
+      - voting-app-network
+    depends_on:
+      - api
+
+  # Postgres DB
+  db:
+    image: postgres:15-alpine
+    container_name: voting-app-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: votingdb
+    ports:
+      - "4432:4432"
+    networks:
+      - voting-app-network
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+networks:
+  voting-app-network:
+
+volumes:
+  db-data:
