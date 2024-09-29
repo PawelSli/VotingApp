@@ -2,6 +2,8 @@ package com.github.pawelsli.votingappapi.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "candidates")
 public class Candidate {
@@ -17,12 +19,11 @@ public class Candidate {
     @Column(name = "votes")
     private Integer votes;
 
-    public Candidate() {
-    }
+    // candidates.candidate_id -> voters.candidate_id
+    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+    private List<Voter> voterList;
 
-    public Candidate(String name, Integer votes) {
-        this.name = name;
-        this.votes = votes;
+    public Candidate() {
     }
 
     public Long getCandidateId() {
@@ -47,5 +48,9 @@ public class Candidate {
 
     public void setVotes(Integer votes) {
         this.votes = votes;
+    }
+
+    public List<Voter> getVoterList() {
+        return voterList;
     }
 }
