@@ -17,6 +17,7 @@ import java.util.List;
 @Slf4j
 @Validated
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class CandidateController {
 
     private final CandidateService candidateService;

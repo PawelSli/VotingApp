@@ -1,0 +1,48 @@
+<div class="p-4">
+  <div class="flex flex-col lg:flex-row gap-4">
+
+    <div class="w-full lg:w-1/2">
+      <h2 class="text-xl font-semibold mb-2 flex justify-between items-center">
+        Voters
+        <button (click)="showVoterForm = !showVoterForm" class="text-blue-500">+</button>
+      </h2>
+
+      <div *ngIf="showVoterForm" class="mb-4">
+        <input [(ngModel)]="newVoter.name" placeholder="Name" class="border border-gray-300 p-2 mr-2"/>
+        <button (click)="addVoter()" class="bg-blue-500 text-white p-2">Add Voter</button>
+      </div>
+
+      <div class="grid grid-cols-2 bg-gray-200">
+        <div class="py-2 px-4 border text-center font-semibold">Name</div>
+        <div class="py-2 px-4 border text-center font-semibold">Has Voted</div>
+      </div>
+
+      <div *ngFor="let voter of voters" class="grid grid-cols-2 bg-white">
+        <div class="py-2 px-4 border text-center">{{ voter.name }}</div>
+        <div class="py-2 px-4 border text-center">{{ voter.hasVoted ? 'Yes' : 'No' }}</div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-1/2">
+      <h2 class="text-xl font-semibold mt-6 mb-2 lg:mt-0 flex justify-between items-center">
+        Candidates
+        <button (click)="showCandidateForm = !showCandidateForm" class="text-blue-500">+</button>
+      </h2>
+
+      <div *ngIf="showCandidateForm" class="mb-4">
+        <input [(ngModel)]="newCandidate.name" placeholder="Name" class="border border-gray-300 p-2 mr-2"/>
+        <button (click)="addCandidate()" class="bg-blue-500 text-white p-2">Add Candidate</button>
+      </div>
+
+      <div class="grid grid-cols-2 bg-gray-200">
+        <div class="py-2 px-4 border text-center font-semibold">Name</div>
+        <div class="py-2 px-4 border text-center font-semibold">Number of Votes</div>
+      </div>
+
+      <div *ngFor="let candidate of candidates" class="grid grid-cols-2 bg-white">
+        <div class="py-2 px-4 border text-center">{{ candidate.name }}</div>
+        <div class="py-2 px-4 border text-center">{{ candidate.votes }}</div>
+      </div>
+    </div>
+  </div>
+</div>

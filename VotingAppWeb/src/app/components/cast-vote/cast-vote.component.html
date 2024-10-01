@@ -1,0 +1,38 @@
+<div class="p-4">
+  <h2 class="text-xl font-semibold mb-4">Vote!</h2>
+
+  <div *ngIf="alertMessage" class="mb-4">
+    <div [ngClass]="alertType === 'success' ? 'bg-green-100 border-green-500 text-green-700' : 'bg-red-100 border-red-500 text-red-700'"
+         class="border px-4 py-3 rounded relative" role="alert">
+      <span class="block sm:inline">{{ alertMessage }}</span>
+      <button (click)="closeAlert()" class="absolute top-0 bottom-0 right-0 px-4 py-3">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex space-x-4 items-center">
+
+    <div class="w-full max-w-xs">
+      <select id="voterSelect" [(ngModel)]="selectedVoter" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-10 px-4">
+        <option [ngValue]="null" disabled selected>Select Voter...</option>
+        <option *ngFor="let voter of voters" [ngValue]="voter.voterId">{{ voter.name }}</option>
+      </select>
+    </div>
+
+    <div class="w-full max-w-xs">
+      <select id="candidateSelect" [(ngModel)]="selectedCandidate" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-10 px-4">
+        <option [ngValue]="null" disabled selected>Select Candidate...</option>
+        <option *ngFor="let candidate of candidates" [ngValue]="candidate.candidateId">{{ candidate.name }}</option>
+      </select>
+    </div>
+
+    <div class="w-auto">
+      <button (click)="submitVote()" [disabled]="!selectedVoter || !selectedCandidate" class="mt-1 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed h-10">
+        Submit!
+      </button>
+    </div>
+  </div>
+</div>
